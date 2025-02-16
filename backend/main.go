@@ -20,7 +20,7 @@ func main() {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Println("Error loading .env file")
+		fmt.Println("Error loading .env file")
 	}
 
 	allowedOrigin := os.Getenv("ALLOWED_ORIGIN")
