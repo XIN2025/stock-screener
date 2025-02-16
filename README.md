@@ -56,6 +56,3 @@ Market Capitalization (B) > 100 AND
 ROE (%) > 15 AND
 P/E Ratio < 20
 ```
-
-
-```
