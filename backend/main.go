@@ -3,23 +3,35 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/xin2025/stock-screener/handlers"
-	"github.com/xin2025/stock-screener/models"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
+	"github.com/xin2025/stock-screener/handlers"
+	"github.com/xin2025/stock-screener/models"
 )
 
 var stocks []models.Stock
 
 func main() {
 
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Error loading .env file")
+	}
+
+	allowedOrigin := os.Getenv("ALLOWED_ORIGIN")
+	if allowedOrigin == "" {
+		log.Fatal("ALLOWED_ORIGIN environment variable is not set")
+	}
+
 	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:3000",
+		AllowOrigins: allowedOrigin,
 		AllowMethods: "GET,POST,HEAD,OPTIONS",
 		AllowHeaders: "*",
 	}))
