@@ -42,7 +42,7 @@ func main() {
 		return handlers.ScreenHandler(c, stocks)
 	})
 
-	log.Fatal(app.Listen(":8080"))
+	log.Fatal(app.Listen(":3000"))
 }
 
 func loadCSVData(path string) {
