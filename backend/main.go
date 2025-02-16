@@ -17,7 +17,7 @@ import (
 var stocks []models.Stock
 
 func main() {
-
+	// Load environment variables from .env (optional, since Render sets env vars)
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
@@ -42,8 +42,17 @@ func main() {
 		return handlers.ScreenHandler(c, stocks)
 	})
 
-	log.Fatal(app.Listen(":3000"))
+	// Get the PORT from the environment, default to 8080 if not set
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	
+	// Bind to 0.0.0.0 so it's accessible externally
+	log.Printf("Listening on port %s", port)
+	log.Fatal(app.Listen("0.0.0.0:" + port))
 }
+
 
 func loadCSVData(path string) {
 	file, err := os.Open(path)
