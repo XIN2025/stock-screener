@@ -50,4 +50,12 @@ This project provides a responsive Next.js 13 frontend for filtering and sorting
 - Pagination with custom limits (10, 25, 50, 100).
 - Download all results as CSV.
 - Responsive design for both desktop and mobile.
+
+```
+Market Capitalization (B) > 100 AND
+ROE (%) > 15 AND
+P/E Ratio < 20
+```
+
+
 ```
